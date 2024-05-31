@@ -37,7 +37,7 @@ def move(y,x) :
         if y >= n:
             y = y % n
         if x >= n:
-            y = y %n
+            y = y % n
 # func 영양제 대각선에 리브로수 탐색
 def search(y,x):
     cnt = 0
@@ -57,7 +57,7 @@ def check_grow(graph, medicine):
             if medicine[i][j] != 1 and graph[i][j] >= 2:
                 graph[i][j] -= 2
                 medicine[i][j] = 1
-            if medicine[i][j] == 1:
+            elif medicine[i][j] == 1:
                 medicine[i][j] = 0 
 
 # m년 동안 반복
