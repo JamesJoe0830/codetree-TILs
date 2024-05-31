@@ -57,6 +57,8 @@ def check_grow(graph, medicine):
             if medicine[i][j] != 1 and graph[i][j] >= 2:
                 graph[i][j] -= 2
                 medicine[i][j] = 1
+            if medicine[i][j] == 1:
+                medicine[i][j] = 0 
 
 # m년 동안 반복
 for i in range(m):
@@ -72,7 +74,7 @@ for i in range(m):
             if medicine[i][j] == 1:
                 graph[i][j] += 1
                 graph[i][j] += search(i,j)
-    # 3. 자라난것 영양제 처리 
+    # 3. 먼저 영양제 기존에 것 없애고, 자라난것 영양제 처리 
     check_grow(graph,medicine)
 
 answer = 0
