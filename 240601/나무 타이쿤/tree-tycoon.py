@@ -21,7 +21,7 @@ dy = [0, 1, 1, 0, -1, -1, -1, 0, 1]
 
 
 # func 영양제 이동
-def move(y,x) : 
+def move(y,x,p) : 
     # 먼저 x,y의 값을 그래프 크기로 나눠 나머지를 구한다.
     # 음수일때 그 값을 n을 더하고
     # 양수면서 n 이상이면 %n을 한다.
@@ -68,7 +68,7 @@ for year in range(m):
     for i in range(n):
         for j in range(n):
             if medicine[i][j] == 1:
-                move(i,j)
+                move(i,j,p)
     # 2. 영양제 위치 높이 1 증가
     for i in range(n):
         for j in range(n):
