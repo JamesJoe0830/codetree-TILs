@@ -80,6 +80,9 @@ for year in range(m):
         for j in range(n):
             if medicine[i][j] == 1:
                 graph[i][j] += 1
+    for i in range(n):
+        for j in range(n):
+            if medicine[i][j] == 1:    
                 graph[i][j] += search(i,j)
     # 3. 먼저 영양제 기존에 것 없애고, 자라난것 영양제 처리 
     check_grow(graph,medicine)
