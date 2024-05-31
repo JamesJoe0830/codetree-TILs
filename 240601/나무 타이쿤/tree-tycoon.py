@@ -16,16 +16,19 @@ medicine[n-1][0] = 1
 medicine[n-1][1] = 1
 medicine[n-2][0] = 1
 medicine[n-2][1] = 1
-dx = [0, 0,-1, -1, -1, 0, 1, 1 , 1]
-dy = [0, 1, 1, 0, -1, -1, -1, 0, 1]
 
+dx = [0, 1,  1, 0,  -1, -1, -1, 0 , 1]
+dy = [0, 0, -1, -1, -1, 0,  1 , 1, 1]
 
 # func 영양제 이동
-def move(y,x,p) : 
+def move(y,x,p,d) :
     # 먼저 x,y의 값을 그래프 크기로 나눠 나머지를 구한다.
     # 음수일때 그 값을 n을 더하고
     # 양수면서 n 이상이면 %n을 한다.
-    for i in range(p):
+    dir_x = dx[d]
+    dir_y = dy[d]
+    medicine[y][x] = 0 
+    for _ in range(p):
         y = (dir_y + y) % n
         x = (dir_x + x) % n
         if y < 0:
@@ -35,17 +38,18 @@ def move(y,x,p) :
         if y >= n:
             y = y % n
         if x >= n:
-            y = y % n
+            x = x % n
+    return y,x
 # func 영양제 대각선에 리브로수 탐색
 def search(y,x):
     cnt = 0
-    for i in range(2,len(dx),1):
+    for i in range(2,len(dx),2):
         ny = y + dy[i]
         nx = x + dx[i]
         
         if 0<= ny < n and 0<= nx < n:
             if graph[ny][nx] > 0:
-                cnt += 1 
+                cnt += 1
     return cnt
 
 # func 영양제 자리 빼고 자란것 가지치기
@@ -61,14 +65,16 @@ def check_grow(graph, medicine):
 # m년 동안 반복
 for year in range(m):
     d, p = map(int, input().split())
+    next_medicine = [[0]*n for _ in range(n)]
     # 이동방향 결정
-    dir_x = dx[d]
-    dir_y = dy[d]
+
     # 1. 영양제 이동
     for i in range(n):
         for j in range(n):
             if medicine[i][j] == 1:
-                move(i,j,p)
+                y,x = move(i,j,p,d)
+                next_medicine[y][x] = 1
+    medicine = next_medicine
     # 2. 영양제 위치 높이 1 증가
     for i in range(n):
         for j in range(n):
@@ -77,8 +83,7 @@ for year in range(m):
                 graph[i][j] += search(i,j)
     # 3. 먼저 영양제 기존에 것 없애고, 자라난것 영양제 처리 
     check_grow(graph,medicine)
-
 answer = 0
 for row in graph:
     answer += sum(row)
-print( answer)
+print(answer)
