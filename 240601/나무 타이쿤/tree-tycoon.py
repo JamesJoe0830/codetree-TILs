@@ -61,7 +61,7 @@ def check_grow(graph, medicine):
                 medicine[i][j] = 0 
 
 # m년 동안 반복
-for i in range(m):
+for year in range(m):
     
     # 1. 영양제 이동
     for i in range(n):
