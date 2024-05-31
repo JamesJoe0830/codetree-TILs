@@ -9,7 +9,7 @@ input = sys.stdin.readline
 n, m = map(int,input().split())
 graph = [list(map(int,input().split())) for _ in range(n)]
 # d: 이동방향, p: 이동 칸 수
-d, p = map(int, input().split())
+
 medicine = [[0]*n for _ in range(n)]
 # 초기 영양제 투입
 medicine[n-1][0] = 1
@@ -19,9 +19,7 @@ medicine[n-2][1] = 1
 dx = [0, 0,-1, -1, -1, 0, 1, 1 , 1]
 dy = [0, 1, 1, 0, -1, -1, -1, 0, 1]
 
-# 이동방향 결정
-dir_x = dx[d]
-dir_y = dy[d]
+
 # func 영양제 이동
 def move(y,x) : 
     # 먼저 x,y의 값을 그래프 크기로 나눠 나머지를 구한다.
@@ -62,7 +60,10 @@ def check_grow(graph, medicine):
 
 # m년 동안 반복
 for year in range(m):
-    
+    d, p = map(int, input().split())
+    # 이동방향 결정
+    dir_x = dx[d]
+    dir_y = dy[d]
     # 1. 영양제 이동
     for i in range(n):
         for j in range(n):
