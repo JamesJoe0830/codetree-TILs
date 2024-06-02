@@ -147,7 +147,7 @@ for _ in range(K):
                     cnt = bfs(i,j,cnt,nx_update_origin_graph,visited)
                     if cnt != 0 :
                         Flag = True
-                        step_answer += cnt
+                    step_answer += cnt
         
 
 
