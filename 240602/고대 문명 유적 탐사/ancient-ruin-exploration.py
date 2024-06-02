@@ -153,4 +153,4 @@ for _ in range(K):
 
     if step_answer != 0 :
         answer.append(str(step_answer))
-print(''.join(answer))
+print(' '.join(answer))
